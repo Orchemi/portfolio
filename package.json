@@ -6,9 +6,13 @@
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
-    "lint": "next lint"
+    "test": "next test",
+    "lint": "next lint",
+    "type-check": "tsc --pretty --noEmit",
+    "prepare": "husky install"
   },
   "dependencies": {
+    "@types/type-check": "^0.3.28",
     "classnames": "^2.3.2",
     "next": "13.5.4",
     "node-sass": "^9.0.0",
@@ -26,6 +30,7 @@
     "eslint-config-next": "13.5.4",
     "eslint-config-prettier": "^9.0.0",
     "eslint-plugin-prettier": "^5.0.1",
+    "husky": "^8.0.3",
     "prettier": "^3.0.3",
     "typescript": "^5"
   }
