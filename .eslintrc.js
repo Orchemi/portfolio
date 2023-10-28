@@ -3,7 +3,7 @@ module.exports = {
   parser: '@typescript-eslint/parser',
   plugins: ['@typescript-eslint', 'prettier'],
   parserOptions: {
-    project: './tsconfig.json',
+    // project: './tsconfig.json',
   },
   env: {
     browser: true,
@@ -38,6 +38,7 @@ module.exports = {
         ignore: ['css'],
       },
     ],
-    'no-console': 'warn',
+    'no-console': ['warn', { allow: ['warn', 'error'] }],
+    'no-unused-vars': 'off',
   },
 };
