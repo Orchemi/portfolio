@@ -7,8 +7,14 @@ export const HomeQueryKey = {
   greeting: () => [...HomeQueryKey.all, 'greeting'],
 };
 
+export interface IGreeting {
+  title: string;
+  description: string;
+  tags: string[];
+}
 export interface IGetGreetingResponse {
-  hello: string;
+  message: string;
+  data: IGreeting[];
 }
 
 export function useQueryGetGreeting(): UseQueryResult<IGetGreetingResponse, AxiosError> {
