@@ -20,6 +20,12 @@ module.exports = {
     'next/core-web-vitals',
   ],
   rules: {
+    'prettier/prettier': [
+      'error',
+      {
+        endOfLine: 'auto', // 줄바꿈 스타일 지정(https://guiyomi.tistory.com/134)
+      },
+    ],
     'react/jsx-curly-brace-presence': ['warn', { props: 'always', children: 'ignore', propElementValues: 'always' }], // jsx 내부의 props는 항상 {} 사용
     // 'React' must be in scope when using JSX 에러 해결 (Next.js)
     'react/react-in-jsx-scope': 'off',
@@ -38,7 +44,7 @@ module.exports = {
         ignore: ['css'],
       },
     ],
-    'no-console': ['warn', { allow: ['warn', 'error'] }],
+    'no-console': 'off', // ['warn', { allow: ['warn', 'error'] }]
     'no-unused-vars': 'off',
   },
 };
