@@ -24,6 +24,7 @@
       "@/*": ["./src/*"],
       "@public/*": ["./src/public/*"],
       "@components/*": ["./src/components/*"],
+      "@types/*": ["./src/types/*"],
       "@styles/*": ["./src/styles/*"],
       "@utils/*": ["./src/utils/*"],
       "@hooks/*": ["./src/hooks/*"],

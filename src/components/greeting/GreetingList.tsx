@@ -1,7 +1,10 @@
-import { IGreeting, useQueryGetGreeting } from '@/queries/home';
+import { IGreetingResponse, useQueryGetGreeting } from '@/queries/home';
 
 import style from './GreetingList.module.scss';
 import classNames from 'classnames/bind';
+import { useState } from 'react';
+import { Nullish } from '@/types/common';
+import GreetingForm from '@/components/greeting/GreetingForm';
 
 const cx = classNames.bind(style);
 
@@ -11,25 +14,39 @@ export default function GreetingList() {
   return (
     <div className={cx('greeting-list')}>
       {(queryGetGreeting?.data ?? []).map((greeting) => (
-        <GreetingItem key={greeting.title} greeting={greeting} />
+        <GreetingItem key={greeting._id} greeting={greeting} />
       ))}
     </div>
   );
 }
 
 interface IGreetingItemProps {
-  greeting: IGreeting;
+  greeting: IGreetingResponse;
 }
 function GreetingItem({ greeting }: IGreetingItemProps) {
-  const { title, description, tags } = greeting;
+  const [editingGreetingId, setEditingGreetingId] = useState<Nullish<string>>(null);
+  const { _id: id, title, description, tags } = greeting;
+
   return (
-    <div className={cx('greeting-item')} key={title}>
-      <h1>{title}</h1>
-      <p>{description}</p>
-      <div>
-        {tags.map((tag) => {
-          return <span key={tag}>{tag}</span>;
-        })}
+    <div className={cx('greeting-item')} key={id}>
+      <div className={cx('read-contents', { show: editingGreetingId !== id })}>
+        <h1>{title}</h1>
+        <p>{description}</p>
+        {tags && (
+          <div>
+            {tags.map((tag) => {
+              return <span key={tag}>{tag}</span>;
+            })}
+          </div>
+        )}
+        <div className={cx('hover-buttons')}>
+          <button onClick={() => setEditingGreetingId(id)}>수정</button>
+          <button>삭제</button>
+        </div>
+      </div>
+      <div className={cx('edit-contents', { show: editingGreetingId === id })}>
+        <GreetingForm type={'edit'} editTarget={greeting} />
+        <button onClick={() => setEditingGreetingId(null)}>취소</button>
       </div>
     </div>
   );
