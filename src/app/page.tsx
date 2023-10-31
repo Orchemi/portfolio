@@ -1,8 +1,7 @@
-import style from './page.module.scss';
-import classNames from 'classnames/bind';
+'use client';
 
-const cx = classNames.bind(style);
+import Home from '@/components/home/Home';
 
-export default function Home() {
-  return <div className={cx('main')}>home</div>;
+export default function MainPage() {
+  return <Home />;
 }

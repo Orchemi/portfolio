@@ -2,4 +2,4 @@
 . "$(dirname -- "$0")/_/husky.sh"
 
 yarn type-check
-yarn lint
+yarn lint --quiet # --quiet 옵션은 warn은 무시하고 error만 출력하도록 함
