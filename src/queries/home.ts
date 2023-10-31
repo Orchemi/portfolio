@@ -1,5 +1,6 @@
-import { getGreeting } from '@/apis/home';
-import { UseQueryResult, useQuery } from '@tanstack/react-query';
+import { getGreeting, postGreeting } from '@/apis/home';
+import { queryClient } from '@/queries/useQueryClient';
+import { UseMutationResult, UseQueryResult, useMutation, useQuery } from '@tanstack/react-query';
 import { AxiosError } from 'axios';
 
 export const HomeQueryKey = {
@@ -21,5 +22,17 @@ export function useQueryGetGreeting(): UseQueryResult<IGetGreetingResponse, Axio
   return useQuery({
     queryKey: HomeQueryKey.greeting(),
     queryFn: getGreeting,
+  });
+}
+
+export interface IPostGreetingRequest extends IGreeting {}
+export interface IPostGreetingResponse extends IGreeting {}
+
+export function useMutationPostGreeting(): UseMutationResult<IPostGreetingRequest, AxiosError, IPostGreetingResponse> {
+  return useMutation({
+    mutationFn: postGreeting,
+    onSuccess: () => {
+      queryClient.invalidateQueries({ queryKey: HomeQueryKey.greeting() });
+    },
   });
 }
