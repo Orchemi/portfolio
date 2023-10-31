@@ -1,4 +1,4 @@
-import { IGreetingResponse, useQueryGetGreeting } from '@/queries/home';
+import { IGreetingResponse, useMutationDeleteGreeting, useQueryGetGreeting } from '@/queries/home';
 
 import style from './GreetingList.module.scss';
 import classNames from 'classnames/bind';
@@ -24,6 +24,7 @@ interface IGreetingItemProps {
   greeting: IGreetingResponse;
 }
 function GreetingItem({ greeting }: IGreetingItemProps) {
+  const { mutate: deleteGreeting } = useMutationDeleteGreeting();
   const [editingGreetingId, setEditingGreetingId] = useState<Nullish<string>>(null);
   const { _id: id, title, description, tags } = greeting;
 
@@ -41,7 +42,7 @@ function GreetingItem({ greeting }: IGreetingItemProps) {
         )}
         <div className={cx('hover-buttons')}>
           <button onClick={() => setEditingGreetingId(id)}>수정</button>
-          <button>삭제</button>
+          <button onClick={() => deleteGreeting({ id })}>삭제</button>
         </div>
       </div>
       <div className={cx('edit-contents', { show: editingGreetingId === id })}>
