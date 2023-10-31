@@ -1,0 +1,159 @@
+@charset 'UTF-8';
+
+*,
+:before,
+:after {
+  box-sizing: border-box;
+}
+
+html,
+body,
+dl,
+dt,
+dd,
+li,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+p,
+table,
+button,
+form,
+input,
+select,
+textarea,
+fieldset,
+legend,
+iframe,
+figure {
+  margin: 0;
+  padding: 0;
+  font-size: 100%;
+}
+
+html,
+body {
+  -webkit-text-size-adjust: none;
+}
+
+body {
+  font-size: 12px;
+  line-height: normal;
+  letter-spacing: -0.01em;
+  color: #25282b;
+  word-wrap: break-word;
+  overflow-wrap: break-word;
+}
+
+address,
+em {
+  font-style: normal;
+}
+
+fieldset,
+img {
+  border: 0;
+  vertical-align: top;
+}
+
+table {
+  border-collapse: collapse;
+  border-spacing: 0;
+}
+
+select {
+  vertical-align: middle;
+}
+
+input,
+textarea,
+select,
+button {
+  appearance: none;
+  -moz-appearance: none;
+  -webkit-appearance: none;
+}
+
+input {
+  border-radius: 0;
+  font-family: Pretendard;
+  vertical-align: middle;
+
+  &::-webkit-search-cancel-button {
+    appearance: none;
+  }
+
+  &::-webkit-contacts-auto-fill-button {
+    visibility: hidden;
+    display: none !important;
+    pointer-events: none;
+    position: absolute;
+    right: 0;
+  }
+
+  &::-ms-clear {
+    display: none;
+  }
+
+  // ms 계열 브라우저 - 비밀번호 보기 버튼 제거
+  &::-ms-reveal {
+    display: none;
+  }
+
+  &::-webkit-inner-spin-button,
+  &::-webkit-outer-spin-button {
+    display: none;
+  }
+
+  &::placeholder {
+    font-family: Pretendard;
+  }
+
+  &:disabled {
+    -webkit-text-fill-color: $color-gray-400;
+    opacity: 1;
+    -webkit-opacity: 1;
+  }
+}
+
+i {
+  font-style: normal;
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+
+  &[role='button'] {
+    cursor: pointer;
+  }
+  &:focus-visible {
+    outline: none;
+  }
+}
+
+button {
+  appearance: none;
+  border: 0;
+  //background: transparent;
+  font: inherit;
+  outline: none;
+  cursor: pointer;
+
+  &:disabled {
+    cursor: default;
+  }
+}
+
+textarea {
+  overflow: auto;
+  font-family: Pretendard;
+  resize: none;
+
+  &::placeholder {
+    font-family: Pretendard;
+  }
+}
