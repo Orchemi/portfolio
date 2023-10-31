@@ -1,0 +1,24 @@
+@import './base.scss';
+
+* {
+  box-sizing: border-box;
+  font-family:
+    Pretendard,
+    -apple-system,
+    BlinkMacSystemFont,
+    'Apple SD Gothic Neo',
+    'Pretendard Variable',
+    Roboto,
+    'Noto Sans KR',
+    'Segoe UI',
+    'Malgun Gothic',
+    'Apple Color Emoji',
+    'Segoe UI Emoji',
+    'Segoe UI Symbol',
+    sans-serif;
+}
+
+html,
+body {
+  margin: 0;
+}
