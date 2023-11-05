@@ -1,6 +1,7 @@
 module.exports = {
   sassOptions: {
-    prependData: `@import "@styles/colors.scss";`,
+    prependData: `@import "@styles/colors.scss";
+                  @import "@styles/media.scss";`,
   },
 
   // https://vercel.com/guides/how-to-enable-cors
