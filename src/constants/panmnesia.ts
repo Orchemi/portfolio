@@ -4,5 +4,6 @@ export const PANMNESIA = {
 } as const;
 
 export const COLORS_PANMNESIA = {
-  main: '#24be58',
+  green500: '#317f2a',
+  green700: '#173f13',
 } as const;
