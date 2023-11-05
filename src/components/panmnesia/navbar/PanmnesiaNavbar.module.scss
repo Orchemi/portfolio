@@ -1,0 +1,12 @@
+.container {
+  display: flex;
+  align-items: center;
+  width: 100vw;
+  height: 50px;
+  padding: 0 12px;
+  background-color: $color-panmnesia-green-700;
+
+  @include under-tablet {
+    height: 41px;
+  }
+}

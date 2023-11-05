@@ -1,5 +1,6 @@
-import { generatePanmnesiaMetadata } from '@/components/panmnesia/utils/generatePanmnesiaMetadata';
-import { getPanmnesiaBaseUrl } from '@/components/panmnesia/utils/getPanmnesiaBaseUrl';
+import PanmnesiaNavbar from '@/components/panmnesia/navbar/PanmnesiaNavbar';
+import { generatePanmnesiaMetadata } from '@/utils/panmnesia/generatePanmnesiaMetadata';
+import { getPanmnesiaBaseUrl } from '@/utils/panmnesia/getPanmnesiaBaseUrl';
 import type { Metadata } from 'next';
 
 export const metadata: Metadata = generatePanmnesiaMetadata({
@@ -13,7 +14,7 @@ export default function PanmnesiaLayout({ children }: { children: React.ReactNod
   return (
     <html lang={'en'}>
       <body>
-        <div>panmnesia layout</div>
+        <PanmnesiaNavbar />
         {children}
       </body>
     </html>
