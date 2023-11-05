@@ -1,5 +1,5 @@
 import { GreetingFormType } from '@/components/greeting/GreetingForm';
-import { IGreeting, IGreetingResponse, useMutationPostGreeting, useMutationUpdateGreeting } from '@/queries/home';
+import { IGreeting, IGreetingResponse, useMutationPostGreeting, useMutationUpdateGreeting } from '@/queries/greeting';
 import { useEffect } from 'react';
 import { useForm } from 'react-hook-form';
 

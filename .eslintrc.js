@@ -21,9 +21,9 @@ module.exports = {
   ],
   rules: {
     'prettier/prettier': [
-      'error',
+      'off',
       {
-        endOfLine: 'auto', // 줄바꿈 스타일 지정(https://guiyomi.tistory.com/134)
+        usePrettierrc: true, // .prettierrc 파일 사용
       },
     ],
     'react/jsx-curly-brace-presence': ['warn', { props: 'always', children: 'ignore', propElementValues: 'always' }], // jsx 내부의 props는 항상 {} 사용
