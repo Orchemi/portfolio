@@ -1,4 +1,4 @@
-import { IGreetingResponse, useMutationDeleteGreeting, useQueryGetGreeting } from '@/queries/home';
+import { IGreetingResponse, useMutationDeleteGreeting, useQueryGetGreeting } from '@/queries/greeting';
 
 import style from './GreetingList.module.scss';
 import classNames from 'classnames/bind';

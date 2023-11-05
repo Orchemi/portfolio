@@ -1,12 +1,12 @@
 // import { IGetGreetingResponse } from './home';
-import { deleteGreeting, getGreeting, postGreeting, updateGreeting } from '@/apis/home';
+import { deleteGreeting, getGreeting, postGreeting, updateGreeting } from '@/apis/greeting';
 import { queryClient } from '@/queries/useQueryClient';
 import { UseMutationResult, UseQueryResult, useMutation, useQuery } from '@tanstack/react-query';
 import { AxiosError } from 'axios';
 
-export const HomeQueryKey = {
+export const GreetingQueryKey = {
   all: ['home'] as const,
-  greeting: () => [...HomeQueryKey.all, 'greeting'],
+  greeting: () => [...GreetingQueryKey.all, 'greeting'],
 };
 
 export interface IGreeting {
@@ -25,7 +25,7 @@ export interface IGetGreetingResponse {
 
 export function useQueryGetGreeting(): UseQueryResult<IGetGreetingResponse, AxiosError> {
   return useQuery({
-    queryKey: HomeQueryKey.greeting(),
+    queryKey: GreetingQueryKey.greeting(),
     queryFn: getGreeting,
   });
 }
@@ -37,7 +37,7 @@ export function useMutationPostGreeting(): UseMutationResult<IPostGreetingRespon
   return useMutation({
     mutationFn: postGreeting,
     onSuccess: () => {
-      queryClient.invalidateQueries({ queryKey: HomeQueryKey.greeting() });
+      queryClient.invalidateQueries({ queryKey: GreetingQueryKey.greeting() });
     },
   });
 }
@@ -56,7 +56,7 @@ export function useMutationUpdateGreeting(): UseMutationResult<
   return useMutation({
     mutationFn: updateGreeting,
     onSuccess: () => {
-      queryClient.invalidateQueries({ queryKey: HomeQueryKey.greeting() });
+      queryClient.invalidateQueries({ queryKey: GreetingQueryKey.greeting() });
     },
   });
 }
@@ -75,7 +75,7 @@ export function useMutationDeleteGreeting(): UseMutationResult<
   return useMutation({
     mutationFn: deleteGreeting,
     onSuccess: () => {
-      queryClient.invalidateQueries({ queryKey: HomeQueryKey.greeting() });
+      queryClient.invalidateQueries({ queryKey: GreetingQueryKey.greeting() });
     },
   });
 }

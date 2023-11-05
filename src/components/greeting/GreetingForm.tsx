@@ -1,7 +1,7 @@
 import style from './GreetingForm.module.scss';
 import classNames from 'classnames/bind';
 import useGreetingForm from '@/components/greeting/useGreetingForm';
-import { IGreetingResponse } from '@/queries/home';
+import { IGreetingResponse } from '@/queries/greeting';
 
 const cx = classNames.bind(style);
 
