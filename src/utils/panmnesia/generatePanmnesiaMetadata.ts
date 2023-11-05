@@ -8,7 +8,6 @@ export const generatePanmnesiaMetadata = ({ title, description, url }: Panmnesia
   return {
     title,
     description,
-
     openGraph: {
       locale: 'en',
       title,
