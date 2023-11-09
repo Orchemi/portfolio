@@ -1,5 +1,11 @@
 'use client';
 
+import PanmnesiaHomeHeader from '@/components/panmnesia/home/PanmnesiaHomeHeader';
+
 export default function PanmnesiaHome() {
-  return <div>panmnesia home</div>;
+  return (
+    <div>
+      <PanmnesiaHomeHeader />
+    </div>
+  );
 }

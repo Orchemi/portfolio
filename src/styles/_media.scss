@@ -63,6 +63,13 @@
   }
 }
 
+// width: 0px ~ 1200px
+@mixin under-laptop {
+  @media (max-width: #{$breakpoint-xl}) {
+    @content;
+  }
+}
+
 // width: 1201px ~ 1400px
 @mixin xxl {
   @media (min-width: #{$breakpoint-xl + 1px}) and (max-width: #{$breakpoint-xxl}) {
