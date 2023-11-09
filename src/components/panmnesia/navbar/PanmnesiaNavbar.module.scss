@@ -33,7 +33,7 @@
     cursor: pointer;
   }
 
-  @include sm {
+  @include under-mobile {
     .menu-section {
       display: none;
     }

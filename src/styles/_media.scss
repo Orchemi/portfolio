@@ -28,8 +28,22 @@
 //   }
 // }
 
-// width: 0 ~ 576px
+// width: 0 ~ 320px
+@mixin xs {
+  @media (max-width: #{$breakpoint-xs}) {
+    @content;
+  }
+}
+
+// width: 321px ~ 576px
 @mixin sm {
+  @media (min-width: #{$breakpoint-xs + 1px}) and (max-width: #{$breakpoint-sm}) {
+    @content;
+  }
+}
+
+// width: 0px ~ 576px
+@mixin under-mobile {
   @media (max-width: #{$breakpoint-sm}) {
     @content;
   }
