@@ -67,25 +67,58 @@
     }
   }
 
-  @include lg {
+  @include under-tablet {
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    height: 600px;
+    padding: 50px 50px 0 50px;
+    height: auto;
     gap: 0;
 
     .main-img {
-      width: 540px;
+      width: 650px;
+      max-width: 100%;
     }
 
     .text-section {
       max-width: 600px;
       order: -1;
 
+      > h1 {
+        font-size: 40px;
+      }
+
       > p {
         text-align: center;
         margin-top: 10px;
-        padding: 0 30px;
+        padding: 0 10px;
+      }
+    }
+  }
+
+  @include under-mobile {
+    padding: 30px 30px 0 30px;
+
+    .text-section {
+      > h1 {
+        font-size: 30px;
+      }
+
+      > p {
+        font-size: 16px;
+        margin-top: 0;
+      }
+    }
+  }
+
+  @include xs {
+    .text-section {
+      > h1 {
+        font-size: 18px;
+      }
+
+      > p {
+        font-size: 12px;
       }
     }
   }
