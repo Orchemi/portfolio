@@ -1,6 +1,11 @@
-// https://vercel.com/guides/how-to-enable-cors
-
 module.exports = {
+  sassOptions: {
+    prependData: `@import "@styles/colors.scss";
+                  @import "@styles/media.scss";
+                  @import "@styles/fonts.scss";`,
+  },
+
+  // https://vercel.com/guides/how-to-enable-cors
   async headers() {
     return [
       {

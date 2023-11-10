@@ -1,0 +1,121 @@
+@import './_media.scss';
+
+@mixin generate-response-font($rem-size, $vw-size, $large-rem-size) {
+  font-size: calc(#{$rem-size} + #{$vw-size});
+
+  @include over-laptop {
+    font-size: #{$large-rem-size};
+  }
+}
+
+@mixin font($variant, $bold: false) {
+  @if $variant == 'h1' {
+    @include generate-response-font(1.5rem, 3.3vw, 4rem);
+  }
+
+  @if $variant == 'h2' {
+    @include generate-response-font(1.3rem, 2.3vw, 3rem);
+  }
+
+  @if $variant == 'h3' {
+    @include generate-response-font(1.2rem, 1.8vw, 2.5rem);
+  }
+
+  @if $bold {
+    font-weight: 700;
+  }
+}
+
+// @mixin font($variant, $bold: false, $no-line-height: false) {
+//   @if $variant == 'h1' {
+//     font-size: 48px;
+//     line-height: 62px;
+//     font-weight: 700;
+//   }
+
+//   @if $variant == 'h2' {
+//     font-size: 32px;
+//     line-height: 42px;
+//     font-weight: 700;
+//   }
+
+//   @if $variant == 'h3' {
+//     font-size: 30px;
+//     line-height: 40px;
+//     font-weight: 700;
+//   }
+
+//   @if $variant == 'h4' {
+//     font-size: 24px;
+//     line-height: 32px;
+//     font-weight: 700;
+//   }
+
+//   @if $variant == 'h5' {
+//     font-size: 24px;
+//     font-weight: 700;
+//     line-height: 36px;
+//   }
+
+//   @if $variant == 'subtitle' {
+//     font-size: 20px;
+//     line-height: 28px;
+//     font-weight: 500;
+//   }
+
+//   @if $variant == 'b1' {
+//     font-size: 18px;
+//     line-height: 26px;
+//     font-weight: 500;
+//   }
+
+//   @if $variant == 'b2' {
+//     font-size: 16px;
+//     line-height: 24px;
+//     font-weight: 500;
+//   }
+
+//   @if $variant == 'b3' {
+//     font-size: 14px;
+//     line-height: 20px;
+//     font-weight: 500;
+//   }
+
+//   @if $variant == 'b4' {
+//     font-size: 12px;
+//     line-height: 18px;
+//     font-weight: 500;
+//   }
+
+//   @if $variant == 'main3' {
+//     font-size: 14px;
+//     line-height: 22px;
+//     font-weight: 400;
+//   }
+
+//   @if $variant == 'main4' {
+//     font-size: 12px;
+//     line-height: 18px;
+//     font-weight: 500;
+//   }
+
+//   @if $variant == 'caption_b' {
+//     font-size: 15px;
+//     line-height: 20px;
+//     font-weight: 600;
+//   }
+
+//   @if $variant == 'caption_m' {
+//     font-size: 13px;
+//     line-height: 16px;
+//     font-weight: 500;
+//   }
+
+//   @if $bold {
+//     font-weight: 700;
+//   }
+
+//   @if $no-line-height {
+//     line-height: unset;
+//   }
+// }
