@@ -1,24 +1,7 @@
 .container {
   display: flex;
   justify-content: center;
+  gap: 10px;
   min-width: 200px;
   padding: 30px 0;
-
-  .menu-edit-form {
-    display: flex;
-    flex-direction: column;
-    gap: 10px;
-
-    .input-area {
-      width: 300px;
-      height: 150px;
-      padding: 10px;
-      text-align: center;
-    }
-
-    .submit-btn {
-      padding: 5px;
-      border-radius: 2px;
-    }
-  }
 }
