@@ -8,12 +8,12 @@ import { useMemo } from 'react';
 const cx = classNames.bind(style);
 
 export default function MidasMenuEditBoard() {
+  const days = ['일', '월', '화', '수', '목', '금', '토'];
   const thisWeek = useMemo(() => {
-    const days = ['일', '월', '화', '수', '목', '금', '토'];
     const todayDay = dayjs().get('day');
     return [1, 2, 3, 4, 5].map((v) => {
       const day = dayjs().add(v - todayDay, 'day');
-      return `${day.format('MM/DD')}\n(${days[day.get('day')]})`;
+      return day;
     });
   }, []);
 
@@ -21,7 +21,9 @@ export default function MidasMenuEditBoard() {
     <div className={cx('board-container')}>
       <BoardRow date={'날짜'} menus={['조식', '중식', '석식']} />
       {thisWeek.map((date) => {
-        return <BoardRow key={date} date={date} menus={['조식', '중식', '석식']} />;
+        // const apiKey = date.format('YYYY-MM-DD');
+        const reformedDate = `${date.format('MM/DD')}\n(${days[date.get('day')]})`;
+        return <BoardRow key={reformedDate} date={reformedDate} menus={['조식', '중식', '석식']} />;
       })}
     </div>
   );
