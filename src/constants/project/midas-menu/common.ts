@@ -17,3 +17,4 @@ export const MENU_TIME_NEXT: Record<MenuTimeType, MenuTimeType> = {
 } as const;
 
 export type MenuTimeType = keyof typeof MENU_TIME;
+export const MENU_TIME_LIST = Object.keys(MENU_TIME) as MenuTimeType[];

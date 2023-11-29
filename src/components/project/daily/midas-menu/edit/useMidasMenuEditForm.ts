@@ -4,11 +4,13 @@ import dayjs from 'dayjs';
 import { useEffect } from 'react';
 import { useForm } from 'react-hook-form';
 
-interface IMenu {
+export interface IMenu {
   date: string;
   time: MenuTimeType;
   menu: string;
 }
+
+export type MenuListType = Record<MenuTimeType, string>;
 
 export default function useMidasMenuEditForm() {
   const { register, handleSubmit, watch, setValue } = useForm<IMenu>();
