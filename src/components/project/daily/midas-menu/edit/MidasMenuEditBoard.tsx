@@ -16,7 +16,7 @@ export default function MidasMenuEditBoard() {
     date: '',
     time: MENU_TIME.BREAKFAST,
   });
-  selectedMenu;
+
   const handleClickBoardCell = (date: string, time: MenuTimeType) => {
     setSelectedMenu({ date, time });
   };
