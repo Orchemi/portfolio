@@ -34,7 +34,13 @@ export default function MidasMenuEditBoard() {
     <div className={cx('board-container')}>
       <BoardRow date={'날짜'} menus={menuTitle} />
       {thisWeek.map((date) => (
-        <BoardRow key={date.format()} date={date} menus={menuTitle} onClick={handleClickBoardCell} />
+        <BoardRow
+          key={date.format()}
+          date={date}
+          menus={menuTitle}
+          onClick={handleClickBoardCell}
+          selectedMenu={selectedMenu}
+        />
       ))}
     </div>
   );
@@ -43,21 +49,24 @@ export default function MidasMenuEditBoard() {
 interface IBoardRowProps {
   date: Dayjs | string;
   menus: MenuListType;
+  selectedMenu?: { date: string; time: MenuTimeType };
   onClick?: (date: string, time: MenuTimeType) => void;
 }
 
-function BoardRow({ date, menus, onClick }: IBoardRowProps) {
+function BoardRow({ date, menus, selectedMenu, onClick }: IBoardRowProps) {
   const reformedDate = typeof date === 'string' ? date : date.format('YYYY-MM-DD'); // YYYY-MM-DD
   const reformedDateKr = typeof date === 'string' ? date : `${date.format('MM/DD')}\n(${days[date.get('day')]})`; // MM/DD(요일)
 
   return (
     <div className={cx('board-row')}>
-      <div className={cx('date')}>{reformedDateKr}</div>
+      <div className={cx('board-cell')}>{reformedDateKr}</div>
       {MENU_TIME_LIST.map((menuTime) => {
         return (
           <div
             key={reformedDateKr + menuTime}
-            className={cx('board-cell')}
+            className={cx('board-cell', {
+              selected: reformedDate === selectedMenu?.date && menuTime === selectedMenu?.time,
+            })}
             onClick={() => onClick && onClick(reformedDate, menuTime)}
             id={`menu-${reformedDate}-${menuTime}`}
           >

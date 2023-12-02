@@ -1,18 +1,13 @@
-$border-color: $color-gray-500;
+$color-border: $color-gray-500;
 
 .board-container {
   max-width: 100%;
   height: fit-content;
-  border: 1px solid $border-color;
+  border: 1px solid $color-border;
 
   .board-row {
     display: grid;
     grid-template-columns: 60px 1fr 1fr 1fr;
-    border-bottom: 1px solid $border-color;
-
-    &:last-child {
-      border-bottom: none;
-    }
 
     > * {
       display: flex;
@@ -20,10 +15,17 @@ $border-color: $color-gray-500;
       align-items: center;
       padding: 8px 16px;
       text-align: center;
-      border-left: 1px solid $border-color;
 
       &:first-child {
         border-left: none;
+      }
+    }
+
+    .board-cell {
+      border: 1px solid $color-border;
+
+      &.selected {
+        border-color: $color-red-500;
       }
     }
   }
