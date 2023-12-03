@@ -30,7 +30,8 @@
       "@hooks/*": ["./src/hooks/*"],
       "@apis/*": ["./src/apis/*"],
       "@queries/*": ["./src/queries/*"],
-      "@constants/*": ["./src/constants/*"]
+      "@constants/*": ["./src/constants/*"],
+      "@stores/*": ["./src/stores/*"]
     }
   },
 

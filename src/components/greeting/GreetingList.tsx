@@ -3,7 +3,7 @@ import { IGreetingResponse, useMutationDeleteGreeting, useQueryGetGreeting } fro
 import style from './GreetingList.module.scss';
 import classNames from 'classnames/bind';
 import { useState } from 'react';
-import { Nullish } from '@/types/common';
+import { Nullable } from '@/types/common';
 import GreetingForm from '@/components/greeting/GreetingForm';
 
 const cx = classNames.bind(style);
@@ -25,7 +25,7 @@ interface IGreetingItemProps {
 }
 function GreetingItem({ greeting }: IGreetingItemProps) {
   const { mutate: deleteGreeting } = useMutationDeleteGreeting();
-  const [editingGreetingId, setEditingGreetingId] = useState<Nullish<string>>(null);
+  const [editingGreetingId, setEditingGreetingId] = useState<Nullable<string>>(null);
   const { _id: id, title, description, tags } = greeting;
 
   return (
