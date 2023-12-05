@@ -1,8 +1,10 @@
 import { MENU_TIME, MenuTimeType, MENU_TIME_NEXT } from '@/constants/project/midas-menu/common';
+import { editMenuSelectedDateAtom, editMenuSelectedTimeAtom } from '@/stores/project/midas-menu/edit.atom';
 import { getToday } from '@/utils/date';
 import dayjs from 'dayjs';
 import { useEffect } from 'react';
 import { useForm } from 'react-hook-form';
+import { useRecoilState } from 'recoil';
 
 export interface IMenu {
   date: string;
@@ -14,6 +16,8 @@ export type MenuListType = Record<MenuTimeType, string>;
 
 export default function useMidasMenuEditForm() {
   const { register, handleSubmit, watch, setValue } = useForm<IMenu>();
+  const [selectedDate, setSelectedDate] = useRecoilState(editMenuSelectedDateAtom);
+  const [selectedTime, setSelectedTime] = useRecoilState(editMenuSelectedTimeAtom);
 
   const dateRegister = register('date');
   const timeRegister = register('time');
@@ -23,17 +27,11 @@ export default function useMidasMenuEditForm() {
     console.log(data);
 
     if (data.time === MENU_TIME.DINNER) {
-      const nextDay = dayjs(data.date).add(1, 'day').format('YYYY-MM-DD');
-      setValue('date', nextDay);
+      const nextDay = dayjs(data.date).add(1, 'day');
+      setSelectedDate(nextDay);
     }
-    setValue('time', MENU_TIME_NEXT[data.time]);
-    setValue('menu', '');
+    setSelectedTime(data.time);
   });
-
-  useEffect(() => {
-    setValue('date', getToday());
-    setValue('time', MENU_TIME.BREAKFAST);
-  }, []);
 
   const menuValue = watch('menu');
   useEffect(() => {

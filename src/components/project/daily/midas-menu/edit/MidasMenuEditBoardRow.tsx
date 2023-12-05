@@ -48,9 +48,7 @@ export default function MidasMenuEditBoardRow({ date, menus }: IBoardRowProps) {
           >
             {selected ? (
               <form className={cx('menu-edit-form')} onSubmit={onSubmit}>
-                <textarea className={cx('menu-edit-textarea')} {...menuRegister}>
-                  {menus[menuTime as MenuTimeType]}
-                </textarea>
+                <textarea className={cx('menu-edit-textarea')} {...menuRegister}></textarea>
               </form>
             ) : (
               <div
