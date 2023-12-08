@@ -32,7 +32,7 @@ export default function MidasMenuEditBoardRow({ date, menus }: IBoardRowProps) {
         <span>{reformedDateFormMMDD}</span>
       </div>
       {MENU_TIME_LIST.map((menuTime) => {
-        const selected = selectedDate === date && selectedTime === menuTime;
+        const selected = reformDayjsToYYYYMMDD(selectedDate) === reformedDateFormYYYYMMDD && selectedTime === menuTime;
         return (
           <div
             key={reformedDateFormYYYYMMDD + menuTime}

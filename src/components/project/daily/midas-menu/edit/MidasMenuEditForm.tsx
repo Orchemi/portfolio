@@ -8,15 +8,15 @@ import { MENU_TIME_DEFINITION } from '@/constants/project/midas-menu/common';
 const cx = classNames.bind(style);
 
 export default function MidasMenuEditForm() {
-  const { dateRegister, timeRegister, menuRegister, onSubmit, watch } = useMidasMenuEditForm();
+  const { menuRegister, onSubmit, watch } = useMidasMenuEditForm();
   return (
     <form className={cx('menu-edit-form')} onSubmit={onSubmit}>
-      <input className={cx('input', 'date')} type={'date'} {...dateRegister} />
+      {/* <input className={cx('input', 'date')} type={'date'} {...dateRegister} /> */}
       <input
         className={cx('input', 'time')}
         type={'text'}
         value={MENU_TIME_DEFINITION[watch('time')]}
-        {...timeRegister}
+        // {...timeRegister}
       />
       <textarea className={cx('input', 'menu')} {...menuRegister}></textarea>
       <button className={cx('submit-btn')} type={'submit'}>
