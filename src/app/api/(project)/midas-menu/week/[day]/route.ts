@@ -13,10 +13,12 @@ export async function GET(request: NextRequest, { params: { day } }: IParams) {
     await mongoDBConnect();
 
     const week = getOneWeek(day).slice(0, 5);
-    const midasWeeklyMenu = week.map(async (oneDay) => {
-      console.log(formDateYYYYMMDD(oneDay));
-      return await MidasMenu.findOne({ date: formDateYYYYMMDD(oneDay) });
-    });
+    const midasWeeklyMenu = await Promise.all(
+      week.map(async (oneDay) => {
+        const dailyMenu = await MidasMenu.findOne({ date: formDateYYYYMMDD(oneDay) });
+        return dailyMenu;
+      }),
+    );
     return NextResponse.json(
       {
         message: 'Ok',
