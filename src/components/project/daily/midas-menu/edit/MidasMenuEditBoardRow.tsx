@@ -6,7 +6,7 @@ import { Dayjs } from 'dayjs';
 import useMidasMenuEditForm, { MenuListType } from '@/components/project/daily/midas-menu/edit/useMidasMenuEditForm';
 import { MENU_TIME_LIST, MenuTimeType } from '@/constants/project/midas-menu/common';
 import { useRecoilState } from 'recoil';
-import { editMenuSelectedDateAtom, editMenuSelectedTimeAtom } from '@/stores/project/midas-menu/edit.atom';
+import { midasMenuSelectedDateAtom, midasMenuSelectedTimeAtom } from '@/stores/project/midas-menu/midasMenu.atom';
 import useReformEditMenuDate from '@/components/project/daily/midas-menu/edit/useReformEditMenuDate';
 import { formDateYYYYMMDD } from '@/utils/date';
 
@@ -18,8 +18,8 @@ interface IBoardRowProps {
 }
 
 export default function MidasMenuEditBoardRow({ date, menus }: IBoardRowProps) {
-  const [selectedDate, setSelectedDate] = useRecoilState(editMenuSelectedDateAtom);
-  const [selectedTime, setSelectedTime] = useRecoilState(editMenuSelectedTimeAtom);
+  const [selectedDate, setSelectedDate] = useRecoilState(midasMenuSelectedDateAtom);
+  const [selectedTime, setSelectedTime] = useRecoilState(midasMenuSelectedTimeAtom);
 
   const { menuRegister, onSubmit } = useMidasMenuEditForm();
   const { formDateMMDDWithDay } = useReformEditMenuDate();

@@ -21,7 +21,6 @@ export const MidasMenuQueryKey = {
   all: ['midas-menu'] as const,
   week: (day: MidasMenuDateType) => [...MidasMenuQueryKey.all, 'week', day],
   day: (day: MidasMenuDateType) => [...MidasMenuQueryKey.all, 'day', day],
-  edit: (key: string) => [...MidasMenuQueryKey.all, 'edit', key],
 };
 
 // GET (READ)

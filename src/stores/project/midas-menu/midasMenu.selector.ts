@@ -1,22 +1,22 @@
 import { DAYS_LIST_KR } from '@/constants/date';
-import { editMenuSelectedDateAtom } from '@/stores/project/midas-menu/edit.atom';
+import { midasMenuSelectedDateAtom } from '@/stores/project/midas-menu/midasMenu.atom';
 import { MidasMenuDateType } from '@/types/(project)/midasMenu/midasMenu';
 import { Nullable } from '@/types/common';
 import { selector } from 'recoil';
 
-export const editMenuSelectedDateSelector = selector<Nullable<MidasMenuDateType>>({
-  key: 'editMenuSelectedDateSelector',
+export const midasMenuSelectedDateSelector = selector<Nullable<MidasMenuDateType>>({
+  key: 'midasMenuSelectedDateSelector',
   get: ({ get }) => {
-    const date = get(editMenuSelectedDateAtom);
+    const date = get(midasMenuSelectedDateAtom);
     if (!date) return null;
     return date.format('YYYY-MM-DD') as MidasMenuDateType;
   },
 });
 
-export const editMenuSelectedDateKrSelector = selector<Nullable<string>>({
-  key: 'editMenuSelectedDateKrSelector',
+export const midasMenuSelectedDateKrSelector = selector<Nullable<string>>({
+  key: 'midasMenuSelectedDateKrSelector',
   get: ({ get }) => {
-    const date = get(editMenuSelectedDateAtom);
+    const date = get(midasMenuSelectedDateAtom);
     if (!date) return null;
     return `${date.format('MM/DD')}\n(${DAYS_LIST_KR[date.get('day')]})`;
   },

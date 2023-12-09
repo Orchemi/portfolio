@@ -5,8 +5,8 @@ import {
   useMutationUpdateMidasMenu,
   useQueryGetDailyMidasMenu,
 } from '@/queries/(project)/midas-menu/midasMenu';
-import { editMenuSelectedDateAtom, editMenuSelectedTimeAtom } from '@/stores/project/midas-menu/edit.atom';
-import { editMenuSelectedDateSelector } from '@/stores/project/midas-menu/edit.selector';
+import { midasMenuSelectedDateAtom, midasMenuSelectedTimeAtom } from '@/stores/project/midas-menu/midasMenu.atom';
+import { midasMenuSelectedDateSelector } from '@/stores/project/midas-menu/midasMenu.selector';
 import dayjs from 'dayjs';
 import { useEffect } from 'react';
 import { useForm } from 'react-hook-form';
@@ -16,9 +16,9 @@ export type MenuListType = Record<MenuTimeType, string>;
 
 export default function useMidasMenuEditForm() {
   const { register, handleSubmit, watch, setValue } = useForm<{ menu: string }>();
-  const [selectedDate, setSelectedDate] = useRecoilState(editMenuSelectedDateAtom);
-  const [selectedTime, setSelectedTime] = useRecoilState(editMenuSelectedTimeAtom);
-  const selectedDateYYYYMMDD = useRecoilValue(editMenuSelectedDateSelector);
+  const [selectedDate, setSelectedDate] = useRecoilState(midasMenuSelectedDateAtom);
+  const [selectedTime, setSelectedTime] = useRecoilState(midasMenuSelectedTimeAtom);
+  const selectedDateYYYYMMDD = useRecoilValue(midasMenuSelectedDateSelector);
 
   const { mutate: updateMidasMenu } = useMutationUpdateMidasMenu();
   const { refetch: getDailyMidasMenu } = useQueryGetDailyMidasMenu({

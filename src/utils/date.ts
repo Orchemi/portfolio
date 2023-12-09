@@ -5,7 +5,7 @@ export const getToday = (format = 'YYYY-MM-DD') => {
   return dayjs().format(format);
 };
 
-export const getOneWeek = (date?: string | Date) => {
+export const getOneWeek = (date?: string | Date | Dayjs) => {
   const todayDay = dayjs(date ?? new Date()).get('day');
   return [1, 2, 3, 4, 5, 6, 7].map((v) => dayjs(date).add(v - todayDay, 'day'));
 };
