@@ -1,8 +1,12 @@
 import { MENU_TIME, MenuTimeType, MENU_TIME_NEXT } from '@/constants/project/midas-menu/common';
-import { IMidasMenu, useMutationUpdateMidasMenu } from '@/queries/(project)/midas-menu/midasMenu';
+import {
+  IMidasMenu,
+  MidasMenusType,
+  useMutationUpdateMidasMenu,
+  useQueryGetDailyMidasMenu,
+} from '@/queries/(project)/midas-menu/midasMenu';
 import { editMenuSelectedDateAtom, editMenuSelectedTimeAtom } from '@/stores/project/midas-menu/edit.atom';
 import { editMenuSelectedDateSelector } from '@/stores/project/midas-menu/edit.selector';
-import { MidasMenuKeyType } from '@/types/(project)/midasMenu/midasMenu';
 import dayjs from 'dayjs';
 import { useEffect } from 'react';
 import { useForm } from 'react-hook-form';
@@ -11,24 +15,36 @@ import { useRecoilState, useRecoilValue } from 'recoil';
 export type MenuListType = Record<MenuTimeType, string>;
 
 export default function useMidasMenuEditForm() {
-  const { register, handleSubmit, watch, setValue } = useForm<IMidasMenu>();
+  const { register, handleSubmit, watch, setValue } = useForm<{ menu: string }>();
   const [selectedDate, setSelectedDate] = useRecoilState(editMenuSelectedDateAtom);
   const [selectedTime, setSelectedTime] = useRecoilState(editMenuSelectedTimeAtom);
   const selectedDateYYYYMMDD = useRecoilValue(editMenuSelectedDateSelector);
 
   const { mutate: updateMidasMenu } = useMutationUpdateMidasMenu();
+  const { refetch: getDailyMidasMenu } = useQueryGetDailyMidasMenu({
+    day: selectedDateYYYYMMDD ?? '0000-00-00',
+    enabled: !!selectedDateYYYYMMDD,
+  });
 
   useEffect(() => {
-    setValue('menu', '');
-  }, [selectedDate, selectedTime, setValue]);
+    (async () => {
+      // const { data } = await refetch();
+      // setValue('menu', data?.data[0].menu ?? '');
+    })();
+  }, [selectedDate, selectedTime, setValue, getDailyMidasMenu]);
 
   const menuRegister = register('menu');
 
   const updateMenu = async () => {
-    if (!selectedDateYYYYMMDD) return;
-    const menuKey: MidasMenuKeyType = `${selectedDateYYYYMMDD}-${selectedTime}`;
-    const menuValue = watch('menu');
-    updateMidasMenu({ key: menuKey, menu: menuValue });
+    try {
+      if (!selectedDateYYYYMMDD) return;
+      const menuValue = watch('menu');
+      const prevMenus = (await getDailyMidasMenu()).data?.data[0].menus ?? {};
+      const newMenus = { ...prevMenus, [selectedTime]: menuValue } as MidasMenusType;
+      updateMidasMenu({ date: selectedDateYYYYMMDD, menus: newMenus });
+    } catch (error) {
+      console.error(error);
+    }
   };
 
   const selectNextCell = () => {

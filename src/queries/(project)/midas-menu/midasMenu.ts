@@ -1,16 +1,26 @@
-import { getAllMidasMenu, postMidasMenu, updateMidasMenu } from '@/apis/(project)/midas-menu/midasMenu';
-import { MidasMenuKeyType, MidasMenuDateType } from '@/types/(project)/midasMenu/midasMenu';
+import {
+  getAllMidasMenu,
+  getDailyMidasMenu,
+  getWeeklyMidasMenu,
+  postMidasMenu,
+  updateMidasMenu,
+} from '@/apis/(project)/midas-menu/midasMenu';
+import { MenuTimeType } from '@/constants/project/midas-menu/common';
+import { MidasMenuDateType } from '@/types/(project)/midasMenu/midasMenu';
 import { UseQueryResult, useQuery, useMutation, UseMutationResult } from '@tanstack/react-query';
 import { AxiosError } from 'axios';
 
 export interface IMidasMenu {
-  key: MidasMenuKeyType;
-  menu: string;
+  date: MidasMenuDateType;
+  menus: MidasMenusType;
 }
+
+export type MidasMenusType = Record<MenuTimeType, string>;
 
 export const MidasMenuQueryKey = {
   all: ['midas-menu'] as const,
   week: (day: MidasMenuDateType) => [...MidasMenuQueryKey.all, 'week', day],
+  day: (day: MidasMenuDateType) => [...MidasMenuQueryKey.all, 'day', day],
   edit: (key: string) => [...MidasMenuQueryKey.all, 'edit', key],
 };
 
@@ -30,7 +40,23 @@ export function useQueryGetAllMidasMenu(): UseQueryResult<IGetMidasMenuResponse,
 export function useQueryGetWeeklyMidasMenu(day: MidasMenuDateType): UseQueryResult<IGetMidasMenuResponse, AxiosError> {
   return useQuery({
     queryKey: MidasMenuQueryKey.week(day),
-    queryFn: getAllMidasMenu,
+    queryFn: () => getWeeklyMidasMenu(day),
+  });
+}
+
+interface IUseQueryGetDailyMidasMenu {
+  day: MidasMenuDateType;
+  enabled?: boolean;
+}
+
+export function useQueryGetDailyMidasMenu({
+  day,
+  enabled = true,
+}: IUseQueryGetDailyMidasMenu): UseQueryResult<IGetMidasMenuResponse, AxiosError> {
+  return useQuery({
+    queryKey: MidasMenuQueryKey.day(day),
+    queryFn: () => getDailyMidasMenu(day),
+    enabled: enabled,
   });
 }
 

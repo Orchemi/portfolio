@@ -1,12 +1,16 @@
 import { Schema, model, models } from 'mongoose';
 
 const MidasMenuSchema = new Schema({
-  key: {
-    type: String,
+  date: {
+    type: String, // YYYY-MM-DD
     required: true,
   },
-  menu: {
-    type: String,
+  menus: {
+    type: {
+      BREAKFAST: { type: String, default: '' },
+      LUNCH: { type: String, default: '' },
+      DINNER: { type: String, default: '' },
+    },
     required: true,
   },
 });

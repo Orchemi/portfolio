@@ -21,12 +21,12 @@ export async function GET() {
 
 export async function POST(request: NextRequest) {
   try {
-    const { key, menu } = await request.json();
-    const newMidasMenu = { key, menu };
+    const { date, menus } = await request.json();
+    const newMidasMenus = { date, menus };
 
     await mongoDBConnect();
 
-    const serverNewMidasMenu = await MidasMenu.create(newMidasMenu);
+    const serverNewMidasMenu = await MidasMenu.create(newMidasMenus);
     return NextResponse.json(
       {
         message: 'MidasMenu successfully created',
@@ -42,19 +42,19 @@ export async function POST(request: NextRequest) {
 
 export async function PUT(request: NextRequest) {
   try {
-    const { key, menu } = await request.json();
-    const newMidasMenu = { key, menu };
+    const { date, menus } = await request.json();
+    const newMidasMenus = { date, menus };
 
     await mongoDBConnect();
 
-    const serverNewMidasMenu = await MidasMenu.findOneAndUpdate({ key: key }, newMidasMenu, { new: true });
-    if (!serverNewMidasMenu) {
-      const serverNewMidasMenu = await MidasMenu.create(newMidasMenu);
+    const serverNewMidasMenus = await MidasMenu.findOneAndUpdate({ date: date }, newMidasMenus, { new: true });
+    if (!serverNewMidasMenus) {
+      const serverNewMidasMenus = await MidasMenu.create(newMidasMenus);
       return NextResponse.json(
         {
           message: 'MidasMenu successfully created',
           success: true,
-          data: serverNewMidasMenu,
+          data: serverNewMidasMenus,
         },
         { status: 201 },
       );
@@ -63,7 +63,7 @@ export async function PUT(request: NextRequest) {
       {
         message: 'MidasMenu successfully updated',
         success: true,
-        data: serverNewMidasMenu,
+        data: serverNewMidasMenus,
       },
       { status: 201 },
     );

@@ -4,4 +4,3 @@ type YearType = string;
 type MonthType = string;
 type DayType = string;
 export type MidasMenuDateType = `${YearType}-${MonthType}-${DayType}`;
-export type MidasMenuKeyType = `${MidasMenuDateType}-${MenuTimeType}`;

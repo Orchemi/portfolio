@@ -17,12 +17,12 @@ export const getDailyMidasMenu = async (day: MidasMenuDateType) => {
   return data;
 };
 
-export const postMidasMenu = async ({ key, menu }: IMidasMenu) => {
-  const { data } = await axios.post('/midas-menu', { key, menu });
+export const postMidasMenu = async ({ date, menus }: IMidasMenu) => {
+  const { data } = await axios.post('/midas-menus', { date, menus });
   return data;
 };
 
-export const updateMidasMenu = async ({ key, menu }: IMidasMenu) => {
-  const { data } = await axios.put(`/midas-menu`, { key, menu });
+export const updateMidasMenu = async ({ date, menus }: IMidasMenu) => {
+  const { data } = await axios.put(`/midas-menu`, { date, menus });
   return data;
 };
