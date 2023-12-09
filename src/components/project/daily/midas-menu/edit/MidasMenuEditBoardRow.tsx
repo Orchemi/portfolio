@@ -8,6 +8,7 @@ import { MENU_TIME_LIST, MenuTimeType } from '@/constants/project/midas-menu/com
 import { useRecoilState } from 'recoil';
 import { editMenuSelectedDateAtom, editMenuSelectedTimeAtom } from '@/stores/project/midas-menu/edit.atom';
 import useReformEditMenuDate from '@/components/project/daily/midas-menu/edit/useReformEditMenuDate';
+import { formDateYYYYMMDD } from '@/utils/date';
 
 const cx = classNames.bind(style);
 
@@ -21,10 +22,10 @@ export default function MidasMenuEditBoardRow({ date, menus }: IBoardRowProps) {
   const [selectedTime, setSelectedTime] = useRecoilState(editMenuSelectedTimeAtom);
 
   const { menuRegister, onSubmit } = useMidasMenuEditForm();
-  const { reformDayjsToMMDDWithDay, reformDayjsToYYYYMMDD } = useReformEditMenuDate();
+  const { formDateMMDDWithDay } = useReformEditMenuDate();
 
-  const reformedDateFormYYYYMMDD = typeof date === 'string' ? '날짜' : reformDayjsToYYYYMMDD(date);
-  const reformedDateFormMMDD = typeof date === 'string' ? '날짜' : reformDayjsToMMDDWithDay(date);
+  const reformedDateFormYYYYMMDD = typeof date === 'string' ? '날짜' : formDateYYYYMMDD(date);
+  const reformedDateFormMMDD = typeof date === 'string' ? '날짜' : formDateMMDDWithDay(date);
 
   return (
     <div className={cx('board-row')}>
@@ -32,7 +33,7 @@ export default function MidasMenuEditBoardRow({ date, menus }: IBoardRowProps) {
         <span>{reformedDateFormMMDD}</span>
       </div>
       {MENU_TIME_LIST.map((menuTime) => {
-        const selected = reformDayjsToYYYYMMDD(selectedDate) === reformedDateFormYYYYMMDD && selectedTime === menuTime;
+        const selected = formDateYYYYMMDD(selectedDate) === reformedDateFormYYYYMMDD && selectedTime === menuTime;
         return (
           <div
             key={reformedDateFormYYYYMMDD + menuTime}

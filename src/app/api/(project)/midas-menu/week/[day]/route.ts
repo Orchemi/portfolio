@@ -1,4 +1,5 @@
 import { MidasMenuDateType } from '@/types/(project)/midasMenu/midasMenu';
+import { formDateYYYYMMDD, getOneWeek } from '@/utils/date';
 import mongoDBConnect from 'libs/mongodb';
 import MidasMenu from 'models/(project)/midas-menu/midasMenu';
 import { NextRequest, NextResponse } from 'next/server';
@@ -9,16 +10,17 @@ interface IParams {
 
 export async function GET(request: NextRequest, { params: { day } }: IParams) {
   try {
-    // Connect to the DB
     await mongoDBConnect();
 
-    // Get data from the Model
-    // TODO:: 여기서 1주일치 데이터 가져오는 로직 추가
-    const midasMenu = await MidasMenu.find();
+    const week = getOneWeek(day).slice(0, 5);
+    const midasWeeklyMenu = week.map(async (oneDay) => {
+      console.log(formDateYYYYMMDD(oneDay));
+      return await MidasMenu.findOne({ date: formDateYYYYMMDD(oneDay) });
+    });
     return NextResponse.json(
       {
         message: 'Ok',
-        data: midasMenu,
+        data: midasWeeklyMenu,
       },
       { status: 200 },
     );
