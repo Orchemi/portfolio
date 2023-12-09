@@ -3,7 +3,6 @@
 import classNames from 'classnames/bind';
 import style from './MidasMenuEditForm.module.scss';
 import useMidasMenuEditForm from '@/components/project/daily/midas-menu/edit/useMidasMenuEditForm';
-import { MENU_TIME_DEFINITION } from '@/constants/project/midas-menu/common';
 
 const cx = classNames.bind(style);
 
@@ -15,7 +14,7 @@ export default function MidasMenuEditForm() {
       <input
         className={cx('input', 'time')}
         type={'text'}
-        value={MENU_TIME_DEFINITION[watch('time')]}
+        // value={MENU_TIME_DEFINITION[watch('time')]}
         // {...timeRegister}
       />
       <textarea className={cx('input', 'menu')} {...menuRegister}></textarea>
