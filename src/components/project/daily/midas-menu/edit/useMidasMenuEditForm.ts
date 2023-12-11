@@ -5,7 +5,11 @@ import {
   useMutationUpdateMidasMenu,
   useQueryGetDailyMidasMenu,
 } from '@/queries/(project)/midas-menu/midasMenu';
-import { midasMenuSelectedDateAtom, midasMenuSelectedTimeAtom } from '@/stores/project/midas-menu/midasMenu.atom';
+import {
+  midasMenuDataAtomFamily,
+  midasMenuSelectedDateAtom,
+  midasMenuSelectedTimeAtom,
+} from '@/stores/project/midas-menu/midasMenu.atom';
 import { midasMenuSelectedDateSelector } from '@/stores/project/midas-menu/midasMenu.selector';
 import dayjs from 'dayjs';
 import { useEffect } from 'react';
@@ -19,19 +23,9 @@ export default function useMidasMenuEditForm() {
   const [selectedDate, setSelectedDate] = useRecoilState(midasMenuSelectedDateAtom);
   const [selectedTime, setSelectedTime] = useRecoilState(midasMenuSelectedTimeAtom);
   const selectedDateYYYYMMDD = useRecoilValue(midasMenuSelectedDateSelector);
+  const [menus, setMenus] = useRecoilState(midasMenuDataAtomFamily(selectedDateYYYYMMDD ?? '0000-00-00'));
 
   const { mutate: updateMidasMenu } = useMutationUpdateMidasMenu();
-  const { refetch: getDailyMidasMenu } = useQueryGetDailyMidasMenu({
-    day: selectedDateYYYYMMDD ?? '0000-00-00',
-    enabled: !!selectedDateYYYYMMDD,
-  });
-
-  useEffect(() => {
-    (async () => {
-      // const { data } = await refetch();
-      // setValue('menu', data?.data[0].menu ?? '');
-    })();
-  }, [selectedDate, selectedTime, setValue, getDailyMidasMenu]);
 
   const menuRegister = register('menu');
 
@@ -39,9 +33,13 @@ export default function useMidasMenuEditForm() {
     try {
       if (!selectedDateYYYYMMDD) return;
       const menuValue = watch('menu');
-      const prevMenus = (await getDailyMidasMenu()).data?.data[0].menus ?? {};
-      const newMenus = { ...prevMenus, [selectedTime]: menuValue } as MidasMenusType;
-      updateMidasMenu({ date: selectedDateYYYYMMDD, menus: newMenus });
+      const newMenus = { ...menus, [selectedTime]: menuValue };
+      await updateMidasMenu(
+        { date: selectedDateYYYYMMDD, menus: newMenus },
+        {
+          onSuccess: (data) => setMenus(data.data.menus),
+        },
+      );
     } catch (error) {
       console.error(error);
     }
@@ -61,12 +59,17 @@ export default function useMidasMenuEditForm() {
   });
 
   const menuValue = watch('menu');
+
   useEffect(() => {
     if (!menuValue) return;
     if (menuValue.split('\n\n').length === 1) return;
     setValue('menu', menuValue.split('\n\n')[0]);
     onSubmit();
   }, [menuValue, onSubmit, setValue]);
+
+  useEffect(() => {
+    setValue('menu', menus[MENU_TIME[selectedTime]]);
+  }, [selectedDate, selectedTime]);
 
   return { menuRegister, onSubmit, watch };
 }

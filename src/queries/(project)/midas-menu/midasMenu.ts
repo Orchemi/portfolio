@@ -7,6 +7,7 @@ import {
 } from '@/apis/(project)/midas-menu/midasMenu';
 import { MenuTimeType } from '@/constants/project/midas-menu/common';
 import { MidasMenuDateType } from '@/types/(project)/midasMenu/midasMenu';
+import { MongoDB } from '@/types/common';
 import { UseQueryResult, useQuery, useMutation, UseMutationResult } from '@tanstack/react-query';
 import { AxiosError } from 'axios';
 
@@ -48,10 +49,15 @@ interface IUseQueryGetDailyMidasMenu {
   enabled?: boolean;
 }
 
+export interface IGetDailyMidasMenuResponse {
+  message: string;
+  data: IMidasMenu;
+}
+
 export function useQueryGetDailyMidasMenu({
   day,
   enabled = true,
-}: IUseQueryGetDailyMidasMenu): UseQueryResult<IGetMidasMenuResponse, AxiosError> {
+}: IUseQueryGetDailyMidasMenu): UseQueryResult<IGetDailyMidasMenuResponse, AxiosError> {
   return useQuery({
     queryKey: MidasMenuQueryKey.day(day),
     queryFn: () => getDailyMidasMenu(day),
@@ -75,7 +81,10 @@ export function useMutationPostMidasMenu(): UseMutationResult<
 
 // PUT (UPDATE)
 export interface IUpdateMidasMenuRequest extends IMidasMenu {}
-export interface IUpdateMidasMenuResponse {}
+export interface IUpdateMidasMenuResponse {
+  data: MongoDB<IMidasMenu>;
+  message: string;
+}
 
 export function useMutationUpdateMidasMenu(): UseMutationResult<
   IUpdateMidasMenuResponse,

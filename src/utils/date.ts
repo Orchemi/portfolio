@@ -1,3 +1,4 @@
+import { MidasMenuDateType } from '@/types/(project)/midasMenu/midasMenu';
 import { Nullable } from '@/types/common';
 import dayjs, { Dayjs } from 'dayjs';
 
@@ -10,7 +11,7 @@ export const getOneWeek = (date?: string | Date | Dayjs) => {
   return [1, 2, 3, 4, 5, 6, 7].map((v) => dayjs(date).add(v - todayDay, 'day'));
 };
 
-export const formDateYYYYMMDD = (date: Nullable<Dayjs | Date>) => {
+export const formDateYYYYMMDD = (date: Nullable<Dayjs | Date>): Nullable<MidasMenuDateType> => {
   if (!date) return null;
-  return dayjs(date).format('YYYY-MM-DD');
+  return dayjs(date).format('YYYY-MM-DD') as MidasMenuDateType;
 };
