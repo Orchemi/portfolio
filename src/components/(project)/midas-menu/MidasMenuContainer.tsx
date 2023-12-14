@@ -2,7 +2,7 @@
 
 import classNames from 'classnames/bind';
 import style from './MidasMenuContainer.module.scss';
-import MidasMenuBoard from '@/components/project/daily/midas-menu/MidasMenuBoard';
+import MidasMenuBoard from '@/components/(project)/midas-menu/MidasMenuBoard';
 import { midasMenuHandleUnitAtom, midasMenuStandardDateAtom } from '@/stores/project/midas-menu/midasMenu.atom';
 import { useRecoilValue, useSetRecoilState } from 'recoil';
 import dayjs from 'dayjs';

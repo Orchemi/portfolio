@@ -3,7 +3,7 @@
 import classNames from 'classnames/bind';
 import style from './MidasMenuBoardRow.module.scss';
 import { Dayjs } from 'dayjs';
-import useMidasMenuEditForm from '@/components/project/daily/midas-menu/useMidasMenuEditForm';
+import useMidasMenuEditForm from '@/components/(project)/midas-menu/useMidasMenuEditForm';
 import { MENU_TIME_LIST, MenuTimeType } from '@/constants/project/midas-menu/common';
 import { useRecoilState } from 'recoil';
 import {
@@ -12,7 +12,7 @@ import {
   midasMenuSelectedDateAtom,
   midasMenuSelectedTimeAtom,
 } from '@/stores/project/midas-menu/midasMenu.atom';
-import useMidasMenuReformDate from '@/components/project/daily/midas-menu/useMidasMenuReformDate';
+import useMidasMenuReformDate from '@/components/(project)/midas-menu/useMidasMenuReformDate';
 import { formDateYYYYMMDD } from '@/utils/date';
 import { MidasMenuDateType } from '@/types/(project)/midasMenu/midasMenu';
 import { useEffect } from 'react';

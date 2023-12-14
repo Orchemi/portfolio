@@ -2,11 +2,11 @@
 
 import classNames from 'classnames/bind';
 import style from './MidasMenuBoard.module.scss';
-import MidasMenuBoardRow from '@/components/project/daily/midas-menu/MidasMenuBoardRow';
+import MidasMenuBoardRow from '@/components/(project)/midas-menu/MidasMenuBoardRow';
 import { getOneWeek } from '@/utils/date';
 import { useRecoilValue } from 'recoil';
 import { midasMenuStandardDateAtom } from '@/stores/project/midas-menu/midasMenu.atom';
-import MidasMenuBoardTitle from '@/components/project/daily/midas-menu/MidasMenuBoardTitle';
+import MidasMenuBoardTitle from '@/components/(project)/midas-menu/MidasMenuBoardTitle';
 
 const cx = classNames.bind(style);
 
