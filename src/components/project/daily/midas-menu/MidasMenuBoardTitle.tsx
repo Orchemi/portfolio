@@ -1,12 +1,12 @@
 'use client';
 
 import classNames from 'classnames/bind';
-import style from './MidasMenuEditBoardRow.module.scss';
+import style from './MidasMenuBoardRow.module.scss';
 import { MENU_TIME, MENU_TIME_LIST, MenuTimeType } from '@/constants/project/midas-menu/common';
 
 const cx = classNames.bind(style);
 
-export default function MidasMenuEditBoardTitle() {
+export default function MidasMenuBoardTitle() {
   const menus = {
     [MENU_TIME.BREAKFAST]: '조식',
     [MENU_TIME.LUNCH]: '중식',

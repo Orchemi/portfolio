@@ -1,9 +1,9 @@
 'use client';
 
 import classNames from 'classnames/bind';
-import style from './MidasMenuEditBoardRow.module.scss';
+import style from './MidasMenuBoardRow.module.scss';
 import { Dayjs } from 'dayjs';
-import useMidasMenuEditForm from '@/components/project/daily/midas-menu/edit/useMidasMenuEditForm';
+import useMidasMenuEditForm from '@/components/project/daily/midas-menu/useMidasMenuEditForm';
 import { MENU_TIME_LIST, MenuTimeType } from '@/constants/project/midas-menu/common';
 import { useRecoilState } from 'recoil';
 import {
@@ -12,7 +12,7 @@ import {
   midasMenuSelectedDateAtom,
   midasMenuSelectedTimeAtom,
 } from '@/stores/project/midas-menu/midasMenu.atom';
-import useReformEditMenuDate from '@/components/project/daily/midas-menu/edit/useReformEditMenuDate';
+import useMidasMenuReformDate from '@/components/project/daily/midas-menu/useMidasMenuReformDate';
 import { formDateYYYYMMDD } from '@/utils/date';
 import { MidasMenuDateType } from '@/types/(project)/midasMenu/midasMenu';
 import { useEffect } from 'react';
@@ -25,7 +25,7 @@ interface IBoardRowProps {
   readonly?: boolean;
 }
 
-export default function MidasMenuEditBoardRow({ date, readonly = true }: IBoardRowProps) {
+export default function MidasMenuBoardRow({ date, readonly = true }: IBoardRowProps) {
   const dateYYYYMMDD = formDateYYYYMMDD(date) as MidasMenuDateType;
   const [midasMenuDates, setMidasMenuDates] = useRecoilState(midasMenuDatesAtom);
   const [menus, setMenus] = useRecoilState(midasMenuDataAtomFamily(dateYYYYMMDD));
@@ -48,7 +48,7 @@ export default function MidasMenuEditBoardRow({ date, readonly = true }: IBoardR
   }, [dateYYYYMMDD, setMenus, dailyMidasMenus?.data?.menus]);
 
   const { menuRegister, onSubmit } = useMidasMenuEditForm();
-  const { formDateMMDDWithDay } = useReformEditMenuDate();
+  const { formDateMMDDWithDay } = useMidasMenuReformDate();
 
   const reformedDateFormYYYYMMDD = formDateYYYYMMDD(date);
   const reformedDateFormMMDDWithDay = formDateMMDDWithDay(date);

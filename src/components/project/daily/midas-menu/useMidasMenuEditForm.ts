@@ -1,10 +1,5 @@
 import { MENU_TIME, MenuTimeType, MENU_TIME_NEXT } from '@/constants/project/midas-menu/common';
-import {
-  IMidasMenu,
-  MidasMenusType,
-  useMutationUpdateMidasMenu,
-  useQueryGetDailyMidasMenu,
-} from '@/queries/(project)/midas-menu/midasMenu';
+import { useMutationUpdateMidasMenu } from '@/queries/(project)/midas-menu/midasMenu';
 import {
   midasMenuDataAtomFamily,
   midasMenuSelectedDateAtom,

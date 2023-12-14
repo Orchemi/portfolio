@@ -1,5 +1,5 @@
-import MidasMenuEditBoard from '@/components/project/daily/midas-menu/edit/MidasMenuEditBoard';
+import MidasMenuBoard from '@/components/project/daily/midas-menu/MidasMenuBoard';
 
 export default function MidasMenuPage() {
-  return <MidasMenuEditBoard readonly />;
+  return <MidasMenuBoard readonly />;
 }
