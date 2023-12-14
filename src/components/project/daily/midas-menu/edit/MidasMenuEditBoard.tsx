@@ -10,16 +10,22 @@ import MidasMenuEditBoardTitle from '@/components/project/daily/midas-menu/edit/
 
 const cx = classNames.bind(style);
 
-export default function MidasMenuEditBoard() {
+interface IProps {
+  readonly?: boolean;
+}
+
+export default function MidasMenuEditBoard({ readonly }: IProps) {
   const standardDate = useRecoilValue(midasMenuStandardDateAtom);
   const thisWeek = getOneWeek(standardDate).slice(0, 5);
 
   return (
-    <div className={cx('board-container')}>
-      <MidasMenuEditBoardTitle />
-      {thisWeek.map((date) => {
-        return <MidasMenuEditBoardRow key={date.format()} date={date} />;
-      })}
+    <div className={cx('container')}>
+      <div className={cx('board-container')}>
+        <MidasMenuEditBoardTitle />
+        {thisWeek.map((date) => (
+          <MidasMenuEditBoardRow key={date.format()} date={date} readonly={readonly} />
+        ))}
+      </div>
     </div>
   );
 }

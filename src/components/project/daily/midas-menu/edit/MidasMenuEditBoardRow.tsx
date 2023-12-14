@@ -22,9 +22,10 @@ const cx = classNames.bind(style);
 
 interface IBoardRowProps {
   date: Dayjs;
+  readonly?: boolean;
 }
 
-export default function MidasMenuEditBoardRow({ date }: IBoardRowProps) {
+export default function MidasMenuEditBoardRow({ date, readonly = true }: IBoardRowProps) {
   const dateYYYYMMDD = formDateYYYYMMDD(date) as MidasMenuDateType;
   const [midasMenuDates, setMidasMenuDates] = useRecoilState(midasMenuDatesAtom);
   const [menus, setMenus] = useRecoilState(midasMenuDataAtomFamily(dateYYYYMMDD));
@@ -58,7 +59,8 @@ export default function MidasMenuEditBoardRow({ date }: IBoardRowProps) {
         <span>{reformedDateFormMMDDWithDay}</span>
       </div>
       {MENU_TIME_LIST.map((menuTime) => {
-        const selected = formDateYYYYMMDD(selectedDate) === reformedDateFormYYYYMMDD && selectedTime === menuTime;
+        const selected =
+          !readonly && formDateYYYYMMDD(selectedDate) === reformedDateFormYYYYMMDD && selectedTime === menuTime;
         return (
           <div
             key={reformedDateFormYYYYMMDD + menuTime}
