@@ -25,7 +25,7 @@ interface IBoardRowProps {
   readonly?: boolean;
 }
 
-export default function MidasMenuBoardRow({ date, readonly = true }: IBoardRowProps) {
+export default function MidasMenuBoardRow({ date, readonly = false }: IBoardRowProps) {
   const dateYYYYMMDD = formDateYYYYMMDD(date) as MidasMenuDateType;
   const [midasMenuDates, setMidasMenuDates] = useRecoilState(midasMenuDatesAtom);
   const [menus, setMenus] = useRecoilState(midasMenuDataAtomFamily(dateYYYYMMDD));
