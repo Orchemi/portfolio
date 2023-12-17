@@ -11,13 +11,7 @@ export async function GET(request: NextRequest, { params: { day } }: IParams) {
   try {
     await mongoDBConnect();
     const midasDailyMenu = await MidasMenu.findOne({ date: day });
-    return NextResponse.json(
-      {
-        message: 'Ok',
-        data: midasDailyMenu,
-      },
-      { status: 200 },
-    );
+    return NextResponse.json(midasDailyMenu, { status: 200 });
   } catch (error) {
     console.error(error);
     return NextResponse.json(

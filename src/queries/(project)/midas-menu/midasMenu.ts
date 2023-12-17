@@ -49,10 +49,7 @@ interface IUseQueryGetDailyMidasMenu {
   enabled?: boolean;
 }
 
-export interface IGetDailyMidasMenuResponse {
-  message: string;
-  data: IMidasMenu;
-}
+export interface IGetDailyMidasMenuResponse extends IMidasMenu {}
 
 export function useQueryGetDailyMidasMenu({
   day,

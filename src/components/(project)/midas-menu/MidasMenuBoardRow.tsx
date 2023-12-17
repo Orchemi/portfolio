@@ -42,10 +42,10 @@ export default function MidasMenuBoardRow({ date, readonly = false }: IBoardRowP
     if (!midasMenuDates.includes(dateYYYYMMDD)) {
       getDailyMidasMenu();
       setMidasMenuDates([...midasMenuDates, dateYYYYMMDD]);
-      if (!dailyMidasMenus?.data?.menus) return;
-      setMenus(dailyMidasMenus.data.menus as MidasMenusType);
+      if (!dailyMidasMenus?.menus) return;
+      setMenus(dailyMidasMenus.menus as MidasMenusType);
     }
-  }, [dateYYYYMMDD, setMenus, dailyMidasMenus?.data?.menus]);
+  }, [dateYYYYMMDD, setMenus, dailyMidasMenus?.menus]);
 
   const { menuRegister, onSubmit } = useMidasMenuEditForm();
   const { formDateMMDDWithDay } = useMidasMenuReformDate();
