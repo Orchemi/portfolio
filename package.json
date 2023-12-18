@@ -30,7 +30,8 @@
     "react-hook-form": "^7.47.0",
     "react-hooks": "^1.0.1",
     "recoil": "^0.7.7",
-    "sass": "^1.69.3"
+    "sass": "^1.69.3",
+    "tesseract.js": "^5.0.3"
   },
   "devDependencies": {
     "@types/node": "^20",
