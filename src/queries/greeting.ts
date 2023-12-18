@@ -1,6 +1,7 @@
 // import { IGetGreetingResponse } from './home';
 import { deleteGreeting, getGreeting, postGreeting, updateGreeting } from '@/apis/greeting';
 import { queryClient } from '@/queries/useQueryClient';
+import { MongoDB } from '@/types/common';
 import { UseMutationResult, UseQueryResult, useMutation, useQuery } from '@tanstack/react-query';
 import { AxiosError } from 'axios';
 
@@ -14,9 +15,7 @@ export interface IGreeting {
   description: string;
   tags?: string[];
 }
-export interface IGreetingResponse extends IGreeting {
-  _id: string;
-}
+export type IGreetingResponse = MongoDB<IGreeting>;
 
 export interface IGetGreetingResponse {
   message: string;

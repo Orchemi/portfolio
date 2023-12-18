@@ -1,0 +1,23 @@
+.container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 30px;
+  flex-wrap: wrap;
+  min-width: 200px;
+  padding: 30px 0;
+
+  button {
+    width: 60px;
+    aspect-ratio: 1;
+    border-radius: 100%;
+    background-color: $color-white;
+    font-weight: 500;
+    font-size: 14px;
+    border: 1px solid $color-gray-500;
+
+    &:hover {
+      background-color: $color-gray-80;
+    }
+  }
+}

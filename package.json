@@ -18,6 +18,7 @@
     "@types/type-check": "^0.3.28",
     "axios": "^1.6.0",
     "classnames": "^2.3.2",
+    "dayjs": "^1.11.10",
     "eslint-prettier": "^0.0.0-empty",
     "mongodb": "^6.2.0",
     "mongoose": "^7.6.3",
@@ -28,6 +29,7 @@
     "react-dom": "^18",
     "react-hook-form": "^7.47.0",
     "react-hooks": "^1.0.1",
+    "recoil": "^0.7.7",
     "sass": "^1.69.3"
   },
   "devDependencies": {
