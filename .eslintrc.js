@@ -20,6 +20,10 @@ module.exports = {
     'next/core-web-vitals',
   ],
   rules: {
+    '@typescript-eslint/no-explicit-any': ['warn'],
+    '@typescript-eslint/no-var-requires': ['warn'],
+    '@typescript-eslint/no-unused-vars': ['off'],
+    '@typescript-eslint/no-this-alias': ['off'],
     'prettier/prettier': [
       'off',
       {
