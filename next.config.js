@@ -1,3 +1,5 @@
+const StylelintPlugin = require('stylelint-webpack-plugin');
+
 module.exports = {
   sassOptions: {
     prependData: `@import "@styles/colors.scss";
@@ -29,6 +31,7 @@ module.exports = {
       test: /\.svg$/i,
       use: ['@svgr/webpack'],
     });
+    config.plugins.push(new StylelintPlugin());
     return config;
   },
 };
