@@ -1,9 +1,14 @@
-@import './colors.scss';
-@import './fonts.scss';
-@import './mixins.scss';
-@import './reset.scss';
-@import './media.scss';
+@import "./colors";
+
+@import "./fonts";
+
+@import "./mixins";
+
+@import "./reset";
+
+@import "./media";
 
 .modal-scroll {
+
   @include modal-scroll;
 }
