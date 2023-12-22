@@ -1,4 +1,4 @@
-@import './_media.scss';
+@import "./media";
 
 @mixin generate-response-font($rem-size, $vw-size, $large-rem-size) {
   font-size: calc(#{$rem-size} + #{$vw-size});
@@ -9,15 +9,19 @@
 }
 
 @mixin font($variant, $bold: false) {
-  @if $variant == 'h1' {
+
+  @if $variant == "h1" {
+
     @include generate-response-font(1.5rem, 3.3vw, 4rem);
   }
 
-  @if $variant == 'h2' {
+  @if $variant == "h2" {
+
     @include generate-response-font(1.3rem, 2.3vw, 3rem);
   }
 
-  @if $variant == 'h3' {
+  @if $variant == "h3" {
+
     @include generate-response-font(1.2rem, 1.8vw, 2.5rem);
   }
 
