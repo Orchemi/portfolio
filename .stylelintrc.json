@@ -1,9 +1,7 @@
 {
   "extends": ["stylelint-config-standard-scss", "stylelint-config-prettier-scss"],
   "rules": {
-    "string-quotes": "double",
     "no-descending-specificity": null,
-    "no-extra-semicolons": true,
     "no-duplicate-selectors": true,
     "no-empty-source": null,
     "selector-class-pattern": null,
