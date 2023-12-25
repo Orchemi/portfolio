@@ -31,7 +31,8 @@
       "@apis/*": ["./src/apis/*"],
       "@queries/*": ["./src/queries/*"],
       "@constants/*": ["./src/constants/*"],
-      "@stores/*": ["./src/stores/*"]
+      "@stores/*": ["./src/stores/*"],
+      "@layouts/*": ["./src/layouts/*"]
     }
   },
 
