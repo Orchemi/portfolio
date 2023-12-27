@@ -9,10 +9,10 @@ export const ADMIN_EMAILS = ['tmdgns1126@naver.com'];
 export const options: NextAuthOptions = {
   providers: [
     CredentialsProvider({
-      name: 'creds',
+      name: 'Credentials',
       credentials: {
-        email: { label: 'Email', placeholder: 'Enter Email' },
-        password: { label: 'Password', placeholder: 'Password' },
+        email: { label: 'Email', type: 'email', placeholder: 'Enter Email' },
+        password: { label: 'Password', type: 'password', placeholder: 'Password' },
       },
       async authorize(credentials) {
         if (!credentials || !credentials.email || !credentials.password) return null;
