@@ -3,12 +3,15 @@
 import ReactQueryProvider from '@/components/providers/ReactQueryProvider';
 import { RecoilRoot } from 'recoil';
 import React from 'react';
+import AuthProvider from '@/components/providers/AuthProvider';
 
 const Providers = ({ children }: { children: React.ReactNode }) => {
   return (
-    <RecoilRoot>
-      <ReactQueryProvider>{children}</ReactQueryProvider>
-    </RecoilRoot>
+    <AuthProvider>
+      <RecoilRoot>
+        <ReactQueryProvider>{children}</ReactQueryProvider>
+      </RecoilRoot>
+    </AuthProvider>
   );
 };
 

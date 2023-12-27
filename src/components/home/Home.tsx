@@ -1,11 +1,13 @@
-import { getServerSession } from 'next-auth';
+'use client';
+
+import { useSession } from 'next-auth/react';
 import style from './Home.module.scss';
 import classNames from 'classnames/bind';
-import { authOptions } from '@/app/api/auth/[...nextauth]/options';
 
 const cx = classNames.bind(style);
 
-export default async function Home() {
-  const data = await getServerSession(authOptions);
+export default function Home() {
+  const { data } = useSession();
+
   return <div className={cx('home-container')}>{JSON.stringify(data)}</div>;
 }
