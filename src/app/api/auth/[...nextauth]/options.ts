@@ -6,7 +6,7 @@ import GoogleProvider from 'next-auth/providers/google';
 
 export const ADMIN_EMAILS = ['tmdgns1126@naver.com'];
 
-export const options: NextAuthOptions = {
+export const authOptions: NextAuthOptions = {
   providers: [
     CredentialsProvider({
       name: 'Credentials',
@@ -59,6 +59,7 @@ export const options: NextAuthOptions = {
     //   clientSecret: process.env.GOOGLE_SECRET ?? '',
     // }),
   ],
+  secret: process.env.NEXT_AUTH_SECRET,
   // callbacks: {
   //   async jwt({ token, user }) {
   //     console.log('JWT: ', token, user);
