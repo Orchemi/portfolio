@@ -51,5 +51,6 @@ module.exports = {
     ],
     'no-console': 'off', // ['warn', { allow: ['warn', 'error'] }]
     'no-unused-vars': 'off',
+    'no-var': 'off',
   },
 };

@@ -32,7 +32,9 @@
       "@queries/*": ["./src/queries/*"],
       "@constants/*": ["./src/constants/*"],
       "@stores/*": ["./src/stores/*"],
-      "@layouts/*": ["./src/layouts/*"]
+      "@layouts/*": ["./src/layouts/*"],
+      "@helpers/*": ["./src/helpers/*"],
+      "@prisma/*": ["./src/prisma/*"]
     }
   },
 
