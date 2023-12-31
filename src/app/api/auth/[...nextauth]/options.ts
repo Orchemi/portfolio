@@ -1,6 +1,7 @@
-import { users } from '@/constants/user';
+import { connectToDatabase, disconnectToDatabase } from '@/helpers/server-helpers';
 import { NextAuthOptions } from 'next-auth';
 import CredentialsProvider from 'next-auth/providers/credentials';
+import bcrypt from 'bcrypt';
 import GitHubProvider from 'next-auth/providers/github';
 import GoogleProvider from 'next-auth/providers/google';
 
@@ -16,11 +17,26 @@ export const authOptions: NextAuthOptions = {
       },
       async authorize(credentials) {
         if (!credentials || !credentials.email || !credentials.password) return null;
-        const user = users.find((u) => u.email === credentials.email);
-        if (user?.password === credentials.password) {
+
+        try {
+          await connectToDatabase();
+          const user = await prisma?.user.findFirst({
+            where: {
+              email: credentials.email,
+            },
+          });
+
+          if (!user?.hashedPassword) return null;
+
+          const isPasswordCorrect = await bcrypt.compare(credentials.password, user.hashedPassword);
+          if (!isPasswordCorrect) return null;
           return user;
+        } catch (error) {
+          console.error(error);
+          return null;
+        } finally {
+          await disconnectToDatabase();
         }
-        return null;
       },
     }),
     // GitHubProvider({
