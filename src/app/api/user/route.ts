@@ -15,7 +15,7 @@ export async function GET() {
     );
   } catch (error) {
     console.error(error);
-    NextResponse.json(
+    return NextResponse.json(
       {
         error: 'server error',
       },
