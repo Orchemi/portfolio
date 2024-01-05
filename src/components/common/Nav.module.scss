@@ -13,6 +13,11 @@
     .menu-area {
       display: flex;
       gap: 10px;
+
+      .auth-wrapper {
+        display: flex;
+        gap: 10px;
+      }
     }
   }
 }
