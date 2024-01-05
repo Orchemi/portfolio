@@ -1,4 +1,5 @@
 import { signIn } from 'next-auth/react';
+import { useState } from 'react';
 import { useForm } from 'react-hook-form';
 
 interface ILoginProps {
@@ -8,23 +9,26 @@ interface ILoginProps {
 
 export default function useLoginForm() {
   const { handleSubmit, register } = useForm<ILoginProps>();
+  const [isLoading, setIsLoading] = useState(false);
 
   const emailRegister = register('email', { required: true });
   const passwordRegister = register('password', { required: true });
 
   const onSubmit = handleSubmit(async (data) => {
     try {
-      const result = await signIn('credentials', {
+      setIsLoading(true);
+      await signIn('credentials', {
         email: data.email,
         password: data.password,
         redirect: true,
         callbackUrl: '/',
       });
-      console.log(data);
     } catch (error) {
       console.error(error);
+    } finally {
+      setIsLoading(false);
     }
   });
 
-  return { emailRegister, passwordRegister, onSubmit };
+  return { emailRegister, passwordRegister, onSubmit, isLoading };
 }
