@@ -2,6 +2,7 @@ import { connectToDatabase, disconnectToDatabase } from '@/helpers/server-helper
 import { NextRequest, NextResponse } from 'next/server';
 import prisma from '@/prisma';
 import bcrypt from 'bcrypt';
+import { ERROR, ERROR_MESSAGE } from '@/constants/error.constant';
 
 export const POST = async (request: NextRequest) => {
   try {
@@ -9,8 +10,8 @@ export const POST = async (request: NextRequest) => {
     if (!name || !email || !password)
       return NextResponse.json(
         {
-          code: 'INVALID_DATA',
-          message: 'Invalid Data',
+          code: ERROR.INVALID_DATA,
+          message: ERROR_MESSAGE[ERROR.INVALID_DATA].EN,
         },
         { status: 422 },
       );
@@ -23,15 +24,16 @@ export const POST = async (request: NextRequest) => {
         email,
       },
     });
-    console.log(existingUser);
-    if (existingUser)
+    if (existingUser) {
+      console.log('existingUser', existingUser);
       return NextResponse.json(
         {
-          code: 'ALREADY_EXISTS_USER',
-          message: 'User already exists',
+          code: ERROR.ALREADY_EXISTS_USER,
+          message: ERROR_MESSAGE[ERROR.ALREADY_EXISTS_USER].EN,
         },
         { status: 422 },
       );
+    }
 
     // 비밀번호 해싱
     const hashedPassword = await bcrypt.hash(password, 10);
@@ -52,7 +54,8 @@ export const POST = async (request: NextRequest) => {
     console.error(error);
     return NextResponse.json(
       {
-        message: 'Server Error',
+        code: ERROR.SERVER_ERROR,
+        message: ERROR_MESSAGE[ERROR.SERVER_ERROR].EN,
       },
       { status: 500 },
     );
