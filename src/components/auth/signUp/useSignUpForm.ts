@@ -1,4 +1,3 @@
-import { ERROR_MESSAGE, ERROR_SET, ErrorType } from '@/constants/error.constant';
 import { useMutationPostSignUp } from '@/queries/auth';
 import { signIn } from 'next-auth/react';
 import { useEffect, useState } from 'react';
@@ -12,7 +11,7 @@ interface ISignUpProps {
 }
 
 export default function useSignUpForm() {
-  const { data: postSignUpData, mutate: postSignUp } = useMutationPostSignUp();
+  const { mutate: postSignUp } = useMutationPostSignUp();
 
   const {
     handleSubmit,
@@ -64,26 +63,30 @@ export default function useSignUpForm() {
     return true;
   };
 
+  const handleSignUp = async (data: ISignUpProps) => {
+    postSignUp(data, {
+      onSuccess: () => {
+        // 회원가입 요청이 성공하면 로그인 요청
+        signIn('credentials', {
+          email: data.email,
+          password: data.password,
+          callbackUrl: '/',
+        });
+      },
+      // onError: (error: any) => {
+      //   const errorMsg = ERROR_MESSAGE[error.response.data.code as ErrorType].KR ?? ERROR_MESSAGE.UNKNOWN.KR;
+      //   throw new Error(errorMsg);
+      // },
+    });
+  };
+
   const onSubmit = handleSubmit(async (data) => {
     try {
       setIsLoading(true);
       if (!validateSignUp(data)) return;
-
-      // 회원가입 요청
-      postSignUp(data);
-
-      // 회원가입 요청이 성공하면 로그인 요청
-    } catch (error: any) {
+      handleSignUp(data);
+    } catch (error) {
       console.error(error);
-
-      const errorCode = error.response?.data.code;
-      alert('문제가 발생했습니다.');
-      if (ERROR_SET.has(errorCode)) {
-        setError('email', {
-          type: 'pattern',
-          message: ERROR_MESSAGE[errorCode as ErrorType].KR,
-        });
-      }
     } finally {
       setIsLoading(false);
     }

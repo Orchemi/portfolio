@@ -27,10 +27,10 @@ axios.interceptors.response.use(
     return response;
   },
   function (error) {
-    if (error.response && location.pathname !== '/404') {
-      location.href = '/notFound';
-      return new Promise(() => {});
-    }
+    // if (error.response && location.pathname !== '/404') {
+    //   location.href = '/notFound';
+    //   return new Promise(() => {});
+    // }
     return Promise.reject(error);
   },
 );

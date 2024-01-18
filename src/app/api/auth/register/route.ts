@@ -25,7 +25,6 @@ export const POST = async (request: NextRequest) => {
       },
     });
     if (existingUser) {
-      console.log('existingUser', existingUser);
       return NextResponse.json(
         {
           code: ERROR.ALREADY_EXISTS_USER,
