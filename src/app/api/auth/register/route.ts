@@ -3,7 +3,7 @@ import { NextRequest, NextResponse } from 'next/server';
 import prisma from '@/prisma';
 import bcrypt from 'bcrypt';
 import { ERROR } from '@constants/error.constant';
-import { generateErrorResponse } from '@/app/api/(_helper)/reponse-error';
+import { generateErrorResponse } from '@/app/api/(_helper)/response-error';
 
 export const POST = async (request: NextRequest) => {
   try {
