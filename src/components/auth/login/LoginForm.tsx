@@ -13,7 +13,7 @@ export default function LoginForm() {
   return (
     <div className={cx('form-container')}>
       <form className={cx('form')} onSubmit={onSubmit}>
-        <input {...emailRegister} placeholder={'Email'} type={'email'} />
+        <input {...emailRegister} placeholder={'Email'} type={'text'} />
         <input {...passwordRegister} placeholder={'Password'} type={'password'} />
         <button className={cx('submit-btn')}>{isLoading ? '로딩중...' : '로그인'}</button>
         <div className={cx('sign-up-wrapper')}>
