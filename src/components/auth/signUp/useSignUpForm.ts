@@ -1,4 +1,6 @@
+import { findErrorMessage } from '@/constants/error.constant';
 import { useMutationPostSignUp } from '@/queries/auth';
+import { AxiosError } from 'axios';
 import { signIn } from 'next-auth/react';
 import { useEffect, useState } from 'react';
 import { useForm } from 'react-hook-form';
@@ -73,10 +75,10 @@ export default function useSignUpForm() {
           callbackUrl: '/',
         });
       },
-      // onError: (error: any) => {
-      //   const errorMsg = ERROR_MESSAGE[error.response.data.code as ErrorType].KR ?? ERROR_MESSAGE.UNKNOWN.KR;
-      //   throw new Error(errorMsg);
-      // },
+      onError: (error: AxiosError) => {
+        const errorMsg = findErrorMessage(error, 'KR');
+        alert(errorMsg);
+      },
     });
   };
 

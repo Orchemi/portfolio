@@ -1,9 +1,12 @@
+import { AxiosError } from 'axios';
+
 export const ERROR = {
   UNKNOWN: 'UNKNOWN',
   SERVER_ERROR: 'SERVER_ERROR',
   INVALID_DATA: 'INVALID_DATA',
   ALREADY_EXISTS_USER: 'ALREADY_EXISTS_USER',
 } as const;
+export type ErrorType = keyof typeof ERROR;
 
 export const ERROR_MESSAGE: Record<ErrorType, ErrorMessageType> = {
   UNKNOWN: {
@@ -23,8 +26,6 @@ export const ERROR_MESSAGE: Record<ErrorType, ErrorMessageType> = {
     KR: '이미 존재하는 사용자입니다.',
   },
 };
-
-export type ErrorType = keyof typeof ERROR;
 export type ErrorMessageType = {
   EN: string;
   KR: string;
@@ -32,3 +33,16 @@ export type ErrorMessageType = {
 
 export const ERROR_LIST = Object.values(ERROR);
 export const ERROR_SET = new Set(ERROR_LIST);
+
+export const findErrorResponse = <T = unknown>(error: AxiosError): T => {
+  return error.response?.data as T;
+};
+
+export const findErrorCode = (error: AxiosError): ErrorType => {
+  return findErrorResponse<{ code: ErrorType }>(error).code ?? ERROR.UNKNOWN;
+};
+
+export const findErrorMessage = (error: AxiosError, type: 'EN' | 'KR' = 'KR'): string => {
+  const errorCode = findErrorCode(error);
+  return ERROR_MESSAGE[errorCode][type];
+};
