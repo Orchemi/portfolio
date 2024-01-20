@@ -28,6 +28,7 @@
       "@styles/*": ["./src/styles/*"],
       "@utils/*": ["./src/utils/*"],
       "@hooks/*": ["./src/hooks/*"],
+      "@api/*": ["./src/app/api/*"],
       "@apis/*": ["./src/apis/*"],
       "@queries/*": ["./src/queries/*"],
       "@constants/*": ["./src/constants/*"],
