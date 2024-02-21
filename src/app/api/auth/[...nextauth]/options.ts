@@ -79,23 +79,21 @@ export const authOptions: NextAuthOptions = {
     signIn: '/auth/login',
   },
   secret: process.env.NEXT_AUTH_SECRET,
-  // callbacks: {
-  //   async jwt({ token, user }) {
-  //     console.log('JWT: ', token, user);
-  //     if (user) {
-  //       token.id = user.id;
-  //       token.role = user.role;
-  //     }
-  //     return token;
-  //   },
+  callbacks: {
+    async jwt({ token, user }) {
+      console.log('JWT: ', token, user);
+      if (user) {
+        token.id = user.id;
+      }
+      return token;
+    },
 
-  //   async session({ session, token }) {
-  //     console.log('Session: ', session, token);
-  //     if (session?.user) {
-  //       session.id = token.id;
-  //       session.role = token.role;
-  //     }
-  //     return session;
-  //   },
-  // },
+    async session({ session, token }) {
+      console.log('Session: ', session, token);
+      if (session) {
+        session = Object.assign({}, session, { accessToken: token.accessToken, id: token.id });
+      }
+      return session;
+    },
+  },
 };
