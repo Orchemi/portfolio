@@ -26,6 +26,7 @@
     "classnames": "^2.3.2",
     "dayjs": "^1.11.10",
     "eslint-prettier": "^0.0.0-empty",
+    "jsonwebtoken": "^9.0.2",
     "mongodb": "^6.2.0",
     "mongoose": "^7.6.3",
     "next": "13.5.4",
