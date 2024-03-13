@@ -13,7 +13,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
     <html lang={'ko'}>
       <body>
         <Providers>
-          <Nav />
+          {/* <Nav /> */}
           {children}
         </Providers>
       </body>
