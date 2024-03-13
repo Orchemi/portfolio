@@ -6,5 +6,5 @@ import classNames from 'classnames/bind';
 const cx = classNames.bind(style);
 
 export default function Home() {
-  return <div className={cx('home-container')}>hello</div>;
+  return <div className={cx('home-container')}></div>;
 }

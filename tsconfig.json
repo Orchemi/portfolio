@@ -25,13 +25,18 @@
       "@public/*": ["./src/public/*"],
       "@components/*": ["./src/components/*"],
       "@types/*": ["./src/types/*"],
+      "@interfaces/*": ["./src/interfaces/*"],
       "@styles/*": ["./src/styles/*"],
       "@utils/*": ["./src/utils/*"],
       "@hooks/*": ["./src/hooks/*"],
+      "@api/*": ["./src/app/api/*"],
       "@apis/*": ["./src/apis/*"],
       "@queries/*": ["./src/queries/*"],
       "@constants/*": ["./src/constants/*"],
-      "@stores/*": ["./src/stores/*"]
+      "@stores/*": ["./src/stores/*"],
+      "@layouts/*": ["./src/layouts/*"],
+      "@helpers/*": ["./src/helpers/*"],
+      "@prisma/*": ["./src/prisma/*"]
     }
   },
 

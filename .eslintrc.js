@@ -24,6 +24,7 @@ module.exports = {
     '@typescript-eslint/no-var-requires': ['warn'],
     '@typescript-eslint/no-unused-vars': ['off'],
     '@typescript-eslint/no-this-alias': ['off'],
+    '@typescript-eslint/no-namespace': ['off'],
     'prettier/prettier': [
       'off',
       {
@@ -50,7 +51,6 @@ module.exports = {
     ],
     'no-console': 'off', // ['warn', { allow: ['warn', 'error'] }]
     'no-unused-vars': 'off',
-    '@typescript-eslint/no-unused-vars': 'off',
-    '@typescript-eslint/no-explicit-any': 'warn',
+    'no-var': 'off',
   },
 };

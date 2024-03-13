@@ -1,0 +1,13 @@
+.form {
+  display: flex;
+  flex-direction: column;
+
+  .sign-up-wrapper {
+    display: flex;
+    gap: 4px;
+
+    .link-sign-up {
+      color: blue;
+    }
+  }
+}

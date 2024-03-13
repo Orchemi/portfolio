@@ -1,0 +1,13 @@
+.layout {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  max-width: 1760px;
+  min-height: 100vh;
+  margin: 0 auto;
+  padding: 0 40px;
+
+  @include under-mobile {
+    padding: 0 24px;
+  }
+}

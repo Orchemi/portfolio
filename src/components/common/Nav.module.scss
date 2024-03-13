@@ -1,0 +1,23 @@
+.header {
+  background-color: $color-gray-600;
+  color: $color-gray-100;
+
+  .nav {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+    padding: 0 24px;
+    height: 40px;
+
+    .menu-area {
+      display: flex;
+      gap: 10px;
+
+      .auth-wrapper {
+        display: flex;
+        gap: 10px;
+      }
+    }
+  }
+}

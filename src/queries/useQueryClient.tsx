@@ -16,7 +16,7 @@ export const useQueryClient = () => {
       },
       mutations: {
         onError: (e) => {
-          console.log(e);
+          console.error(e);
         },
       },
     });
