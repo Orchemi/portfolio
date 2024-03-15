@@ -36,7 +36,8 @@
       "@stores/*": ["./src/stores/*"],
       "@layouts/*": ["./src/layouts/*"],
       "@helpers/*": ["./src/helpers/*"],
-      "@prisma/*": ["./src/prisma/*"]
+      "@prisma/*": ["./src/prisma/*"],
+      "@libs/*": ["./src/libs/*"]
     }
   },
 
