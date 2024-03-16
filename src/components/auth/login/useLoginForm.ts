@@ -1,4 +1,5 @@
-import { signIn } from 'next-auth/react';
+import { findErrorMessage } from '@/constants/error.constant';
+import { useMutationPostLogin } from '@/queries/auth';
 import { useState } from 'react';
 import { useForm } from 'react-hook-form';
 
@@ -10,6 +11,7 @@ interface ILoginProps {
 export default function useLoginForm() {
   const { handleSubmit, register } = useForm<ILoginProps>();
   const [isLoading, setIsLoading] = useState(false);
+  const { mutate: postLogin } = useMutationPostLogin();
 
   const emailRegister = register('email', { required: true });
   const passwordRegister = register('password', { required: true });
@@ -17,11 +19,15 @@ export default function useLoginForm() {
   const onSubmit = handleSubmit(async (data) => {
     try {
       setIsLoading(true);
-      await signIn('credentials', {
-        email: data.email,
-        password: data.password,
-        redirect: true,
-        callbackUrl: '/',
+      postLogin(data, {
+        onSuccess: async (response) => {
+          alert('로그인 성공');
+        },
+        onError: (error) => {
+          const errorMsg = findErrorMessage(error);
+          alert(errorMsg);
+          console.error(error);
+        },
       });
     } catch (error) {
       console.error(error);
